@@ -11,3 +11,4 @@ This image holds all the basic stuff I need when working with a golang applicati
     * gox
     * godep
     * bin-pack
+  * love
