@@ -5,14 +5,20 @@ MAINTAINER Dustin Willis Webber
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN apt-get -qq update
+RUN apt-get install -y locales
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+RUN locale-gen en_US.UTF-8
+
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
 ENV GOLANG_VERSION 1.4.2
 
 ENV HOME /root
-ENV TZ America/New_York
 ENV UTC true
 
-RUN apt-get install apt-utils
-RUN apt-get -qq update
 RUN apt-get upgrade -y
 RUN apt-get install -y ruby-dev build-essential autoconf
 RUN apt-get install -y git wget curl openssl socat mysql-client python
@@ -34,6 +40,7 @@ ENV PATH /usr/src/go/bin:$PATH
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
 RUN mkdir -p /source && chmod -R 777 /source
 
+ENV GOROOT /usr/src/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
