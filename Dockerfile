@@ -31,16 +31,16 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN curl -sSL https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz \
-		| tar -v -C /usr/src -xz
+		| tar -v -C /usr/local/ -xz
 
-RUN cd /usr/src/go/src && ./make.bash --no-clean 2>&1
+RUN cd /usr/local/go/src && ./make.bash --no-clean 2>&1
 
-ENV PATH /usr/src/go/bin:$PATH
+ENV PATH /usr/local/go/bin:$PATH
 
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
 RUN mkdir -p /source && chmod -R 777 /source
 
-ENV GOROOT /usr/src/go
+ENV GOROOT /usr/local/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
@@ -48,7 +48,8 @@ RUN gem install fpm package_cloud --no-ri --no-rdoc
 
 RUN go get github.com/tools/godep
 RUN go get github.com/mitchellh/gox
-RUN go get github.com/jteeuwen/go-bindata
+RUN go get github.com/jteeuwen/go-bindata/...
+
 RUN gox -build-toolchain
 
 # go get with private repos is BLAH!@#
