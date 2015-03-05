@@ -6,7 +6,7 @@ MAINTAINER Dustin Willis Webber
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qq update
-RUN apt-get install -y locales
+RUN apt-get install -y sudo locales
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8
 
