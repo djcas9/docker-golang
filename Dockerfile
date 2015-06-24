@@ -20,7 +20,7 @@ ENV HOME /root
 ENV UTC true
 
 RUN apt-get upgrade -y
-RUN apt-get install -y ruby-dev gcc git rpm mercurial gcc-multilib libc6-i386 ruby-dev build-essential autoconf rpm libsqlite3-dev sqlite3
+RUN apt-get install -y cmake ruby-dev gcc git rpm mercurial gcc-multilib libc6-i386 ruby-dev build-essential autoconf rpm libsqlite3-dev sqlite3
 RUN apt-get install -y git wget curl openssl socat mysql-client python
 RUN apt-get install -y zlib1g zlib1g-dev libssl-dev libcurl4-openssl-dev libexpat1-dev gettext
 
