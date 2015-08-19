@@ -6,7 +6,7 @@ This image holds all the basic stuff I need when working with a golang applicati
 ## Includes
 
   * debian wheezy
-  * go 1.4.2
+  * go 1.5
   * go imports
     * gox
     * godep
