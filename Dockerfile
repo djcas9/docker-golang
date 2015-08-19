@@ -44,7 +44,7 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN mkdir -p /source && chmod -R 777 /source
 
-RUN gem install fpm package_cloud --no-ri --no-rdoc
+RUN gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc
 
 RUN go get github.com/tools/godep
 RUN go get github.com/mitchellh/gox
