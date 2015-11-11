@@ -1,4 +1,3 @@
-
 FROM debian:wheezy
 
 MAINTAINER Dustin Willis Webber
@@ -49,6 +48,10 @@ RUN gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc
 RUN go get github.com/tools/godep
 RUN go get github.com/mitchellh/gox
 RUN go get github.com/jteeuwen/go-bindata/...
+
+# Nodejs
+RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
+RUN apt-get install --yes nodejs
 
 # go get with private repos is BLAH!@#
 RUN git config --global url.ssh://git@github.com/.insteadOf https://github.com/
