@@ -50,7 +50,7 @@ RUN go get github.com/mitchellh/gox
 RUN go get github.com/jteeuwen/go-bindata/...
 
 # Nodejs
-RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_5.x | bash -
 RUN apt-get install --yes nodejs
 
 # go get with private repos is BLAH!@#
