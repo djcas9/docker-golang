@@ -49,7 +49,4 @@ RUN gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc
 RUN curl --silent --location https://deb.nodesource.com/setup_5.x | bash -
 RUN apt-get install --yes nodejs
 
-# go get with private repos is BLAH!@#
-RUN git config --global url.ssh://git@github.com/.insteadOf https://github.com/
-
 WORKDIR /source
