@@ -16,15 +16,16 @@ ENV LANGUAGE en_US.UTF-8
 
 ENV GOLANG_GOOS linux
 ENV GOLANG_GOARCH amd64
-ENV GOLANG_VERSION 1.6.2
+ENV GOLANG_VERSION 1.7.5
 
 ENV HOME /root
 ENV UTC true
 
-RUN apt-get upgrade -y
-RUN apt-get install -y libpng-dev subversion cmake ruby-dev gcc git rpm mercurial gcc-multilib libc6-i386 ruby-dev build-essential autoconf libsqlite3-dev sqlite3
-RUN apt-get install -y git wget curl openssl socat mysql-client python
-RUN apt-get install -y zlib1g zlib1g-dev libssl-dev libcurl4-openssl-dev libexpat1-dev gettext
+RUN apt-get upgrade -y && \
+	apt-get install -y libpng-dev subversion cmake ruby-dev gcc git rpm \
+	mercurial gcc-multilib libc6-i386 ruby-dev build-essential autoconf \
+	libsqlite3-dev sqlite3 git wget curl openssl socat mysql-client python \
+	zlib1g zlib1g-dev libssl-dev libcurl4-openssl-dev libexpat1-dev gettext
 
 # gcc for cgo
 RUN apt-get update && apt-get install -y \
@@ -37,8 +38,7 @@ RUN curl -sSL https://golang.org/dl/go$GOLANG_VERSION.$GOLANG_GOOS-$GOLANG_GOARC
 
 ENV GOROOT /usr/local/go
 ENV GOPATH /go
-ENV PATH /go/bin:$PATH
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV PATH /usr/local/go/bin:$GOPATH/bin:$PATH
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN mkdir -p /source && chmod -R 777 /source
@@ -46,7 +46,7 @@ RUN mkdir -p /source && chmod -R 777 /source
 RUN gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc
 
 # Nodejs
-RUN curl --silent --location https://deb.nodesource.com/setup_5.x | bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install --yes nodejs
 
 WORKDIR /source
