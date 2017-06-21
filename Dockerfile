@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:latest
 
 MAINTAINER Dustin Willis Webber
 
@@ -46,7 +46,7 @@ RUN mkdir -p /source && chmod -R 777 /source
 RUN gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc
 
 # Nodejs
-RUN curl --silent --location https://deb.nodesource.com/setup_6.x | bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install --yes nodejs
 
 WORKDIR /source
