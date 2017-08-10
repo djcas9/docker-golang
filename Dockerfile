@@ -16,7 +16,7 @@ ENV LANGUAGE en_US.UTF-8
 
 ENV GOLANG_GOOS linux
 ENV GOLANG_GOARCH amd64
-ENV GOLANG_VERSION 1.7.5
+ENV GOLANG_VERSION 1.8.3
 
 ENV HOME /root
 ENV UTC true
@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -sSL https://golang.org/dl/go$GOLANG_VERSION.$GOLANG_GOOS-$GOLANG_GOARCH.tar.gz \
     | tar -v -C /usr/local -xz
+RUN strip /usr/local/go/bin/*
 
 ENV GOROOT /usr/local/go
 ENV GOPATH /go
