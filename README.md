@@ -1,6 +1,6 @@
 # Golang Docker Image
 
-This image holds all the basic stuff I need when working with a golang application.
+This image holds all the basic stuff when working with a golang application.
 
 
 ## Includes
