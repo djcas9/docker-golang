@@ -5,9 +5,10 @@ MAINTAINER Dustin Willis Webber
 ENV OS=linux ARCH=amd64 GO_VERSION=1.9.1 GOROOT=/usr/local/go GOPATH=/go
 ENV PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
-RUN apk add --no-cache autoconf bash curl gcc git make python2 rpm \
-	nodejs nodejs-npm ruby ruby-dev libc-dev libffi-dev libc6-compat
-
+RUN apk add --no-cache autoconf automake bash curl gcc git make python2 rpm \
+	ruby ruby-dev nodejs nodejs-npm libc-dev libc6-compat libffi-dev \
+	libpng-dev
+	
 RUN curl -sSL https://golang.org/dl/go$GO_VERSION.$OS-$ARCH.tar.gz \
 	| tar -C /usr/local -xz && strip /usr/local/go/bin/* && \
 	mkdir -p /go /source && chmod -R 777 /go /source && \
