@@ -5,7 +5,6 @@ MAINTAINER Dustin Willis Webber
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-# RUN apt-get -qq upgrade
 RUN apt-get install -y sudo locales
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8
@@ -16,7 +15,7 @@ ENV LANGUAGE en_US.UTF-8
 
 ENV GOLANG_GOOS linux
 ENV GOLANG_GOARCH amd64
-ENV GOLANG_VERSION 1.8.3
+ENV GOLANG_VERSION 1.9.1
 
 ENV HOME /root
 ENV UTC true
