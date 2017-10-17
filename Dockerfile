@@ -1,53 +1,17 @@
-FROM debian:latest
+FROM alpine:latest
 
 MAINTAINER Dustin Willis Webber
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV OS=linux ARCH=amd64 GO_VERSION=1.9.1 GOROOT=/usr/local/go GOPATH=/go
+ENV PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
-RUN apt-get update
-# RUN apt-get -qq upgrade
-RUN apt-get install -y sudo locales
-RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-RUN locale-gen en_US.UTF-8
+RUN apk add --no-cache bash gcc git ruby ruby-dev make nodejs curl rpm \
+	libc-dev libffi-dev libc6-compat
 
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-
-ENV GOLANG_GOOS linux
-ENV GOLANG_GOARCH amd64
-ENV GOLANG_VERSION 1.8.3
-
-ENV HOME /root
-ENV UTC true
-
-RUN apt-get upgrade -y && \
-	apt-get install -y libpng-dev subversion cmake ruby-dev gcc git rpm \
-	mercurial gcc-multilib libc6-i386 ruby-dev build-essential autoconf \
-	libsqlite3-dev sqlite3 git wget curl openssl socat mysql-client python \
-	zlib1g zlib1g-dev libssl-dev libcurl4-openssl-dev libexpat1-dev gettext
-
-# gcc for cgo
-RUN apt-get update && apt-get install -y \
-		gcc libc6-dev make \
-		--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN curl -sSL https://golang.org/dl/go$GOLANG_VERSION.$GOLANG_GOOS-$GOLANG_GOARCH.tar.gz \
-    | tar -v -C /usr/local -xz
-RUN strip /usr/local/go/bin/*
-
-ENV GOROOT /usr/local/go
-ENV GOPATH /go
-ENV PATH /usr/local/go/bin:$GOPATH/bin:$PATH
-
-RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-RUN mkdir -p /source && chmod -R 777 /source
-
-RUN gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc
-
-# Nodejs
-RUN curl --silent --location https://deb.nodesource.com/setup_7.x | bash -
-RUN apt-get install --yes nodejs
+RUN curl -sSL https://golang.org/dl/go$GO_VERSION.$OS-$ARCH.tar.gz \
+	| tar -C /usr/local -xz && strip /usr/local/go/bin/* && \
+	mkdir -p /go /source && chmod -R 777 /go /source && \
+	gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc && \
+	go get -u github.com/kardianos/govendor
 
 WORKDIR /source
