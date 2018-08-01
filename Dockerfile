@@ -5,7 +5,7 @@ MAINTAINER Dustin Willis Webber
 ENV OS=linux ARCH=amd64 GO_VERSION=1.9.1 GOROOT=/usr/local/go GOPATH=/go
 ENV PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
-RUN apk add --no-cache autoconf automake bash curl gcc g++ git make rpm \
+RUN apk add --no-cache autoconf automake bash curl gcc g++ git make rpm upx \
 	python2 ruby ruby-dev nodejs nodejs-npm libc-dev libc6-compat libffi-dev \
 	libpng-dev
 
