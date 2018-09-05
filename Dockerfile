@@ -14,6 +14,4 @@ RUN curl -sSL https://golang.org/dl/go$GO_VERSION.$OS-$ARCH.tar.gz \
 	mkdir -p /go /source && chmod -R 777 /go /source && \
 	gem install fpm package_cloud thor-scmversion --no-ri --no-rdoc
 
-RUN npm i npm@latest -g
-
 WORKDIR /source
