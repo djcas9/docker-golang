@@ -5,6 +5,6 @@ This image holds all the basic stuff when working with a golang application.
 
 ## Includes
 
-  * alpine linux
-  * go 1.9.1
+  * alpine linux 3.7
+  * go 1.11.2
   * love
