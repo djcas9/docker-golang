@@ -2,7 +2,7 @@ FROM alpine:3.7
 
 MAINTAINER Dustin Willis Webber
 
-ENV OS=linux ARCH=amd64 GO_VERSION=1.11.2 GOROOT=/usr/local/go GOPATH=/go
+ENV OS=linux ARCH=amd64 GO_VERSION=1.13 GOROOT=/usr/local/go GOPATH=/go
 ENV PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 RUN apk add --no-cache autoconf automake bash curl gcc g++ git make rpm \
